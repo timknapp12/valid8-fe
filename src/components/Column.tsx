@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface ColumnProps {
-  className?: string;
-  children: React.ReactNode;
-}
+import { ColumnProps } from '../types';
 
 export const Column: React.FC<ColumnProps> = ({ className = '', children }) => {
   return (

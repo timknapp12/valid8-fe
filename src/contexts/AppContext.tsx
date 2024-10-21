@@ -1,10 +1,5 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
-
-interface AppContextType {
-  searchTerm: string;
-  //   setSearchTerm: (searchTerm: string) => void;
-  handleSearch: (query: string) => void;
-}
+import { AppContextType } from '../types';
 
 const AppContext = createContext<AppContextType>({} as AppContextType);
 export const useAppContext = () => useContext(AppContext);

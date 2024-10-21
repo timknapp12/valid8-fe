@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Row } from './Row';
-
-interface SearchInputProps {
-  onSearch: (value: string) => void;
-  placeholder?: string;
-}
+import { SearchInputProps } from '../types';
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   onSearch,
@@ -18,7 +14,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <Row className='w-[80%] p-0 bg-gradient-to-r from-white to-transparent rounded-md h-10 border border-gray-200'>
+    <Row className='w-[80%] p-0 bg-gradient-to-r from-white to-transparent rounded-md h-10 border border-lightGray'>
       <input
         type='text'
         value={searchTerm}

@@ -1,11 +1,12 @@
 import './App.css';
-import { Header } from './components';
+import AppProvider from './contexts/AppContext';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div>
-      <Header />
-    </div>
+    <AppProvider>
+      <Home />
+    </AppProvider>
   );
 }
 

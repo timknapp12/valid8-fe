@@ -14,7 +14,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <Row className='w-[80%] p-0 bg-gradient-to-r from-white to-transparent rounded-md h-10 border border-lightGray'>
+    <Row className='w-[80%] p-0 bg-gradient-to-r from-white to-transparent rounded-md h-10 border border-lightGray focus-within:border-hotPink'>
       <input
         type='text'
         value={searchTerm}
@@ -22,7 +22,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         placeholder={placeholder}
         className='w-full px-4 py-2 pr-10 text-sm bg-transparent focus:outline-none focus:ring-0 text-gradient h-full'
       />
-      <div className='flex items-center px-3 h-full'>
+      <div className='flex items-center px-3 h-full group'>
         <svg
           className='w-5 h-5'
           fill='none'

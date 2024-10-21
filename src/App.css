@@ -1,9 +1,5 @@
-.App {
-  text-align: center;
-  color: white;
-}
-
 body {
+  color: white;
   background-color: #121212;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('./assets/valid8-bg.JPG');

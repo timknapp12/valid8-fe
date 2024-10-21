@@ -49,6 +49,7 @@ const styles = `
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    caret-color: black;
   }
 `;
 

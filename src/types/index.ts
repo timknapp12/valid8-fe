@@ -1,6 +1,7 @@
 export interface AppContextType {
   searchTerm: string;
   handleSearch: (query: string) => void;
+  mockItems: TileProps[];
 }
 
 export interface ButtonProps {
@@ -17,6 +18,7 @@ export interface ColumnProps {
 
 export interface RowProps {
   className?: string;
+  style?: React.CSSProperties;
   children: React.ReactNode;
 }
 

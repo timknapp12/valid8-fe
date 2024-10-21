@@ -12,6 +12,7 @@ export interface ButtonProps {
 export interface ColumnProps {
   className?: string;
   children: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 export interface RowProps {

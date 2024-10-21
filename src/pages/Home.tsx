@@ -48,9 +48,10 @@ const Home: React.FC = () => {
   return (
     <div>
       <StyleTag />
-      <Column className='gap-8'>
-        <Header />
-        <Column>
+      <Header />
+      <Column className='gap-12 p-0' style={{ padding: 0 }}>
+        <div />
+        <Column className='pl-0 pr-0'>
           <h2 className='text-2xl font-bold'>
             Find github projects that use valid8
           </h2>

@@ -14,10 +14,10 @@ export interface AppContextType {
 }
 
 export interface ButtonProps {
-  children: any;
-  className?: string;
   onClick: () => void;
   loading?: boolean;
+  children: React.ReactNode;
+  className?: string;
 }
 
 export interface ColumnProps {

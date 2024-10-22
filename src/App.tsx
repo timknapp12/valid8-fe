@@ -1,12 +1,12 @@
 import './App.css';
+import AppProvider from './contexts/AppContext';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1>Valid8 Finder</h1>
-      </header>
-    </div>
+    <AppProvider>
+      <Home />
+    </AppProvider>
   );
 }
 

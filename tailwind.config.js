@@ -15,7 +15,7 @@ module.exports = {
         'custom-dark':
           '0 6px 8px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.4)',
         'custom-dark-hover':
-          '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.6)',
+          '4px 10px 15px -3px rgba(0, 0, 0, 0.5), 8px 4px 6px -2px rgba(0, 0, 0, 0.4)',
       },
     },
   },

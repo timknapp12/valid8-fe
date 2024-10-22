@@ -40,9 +40,9 @@ const Home: React.FC = () => {
                 padding: 0,
               }}
             >
-              <div className='p-2' onClick={() => setShowGridView(true)}>
+              <button className='p-2' onClick={() => setShowGridView(true)}>
                 <AiOutlineFullscreen size={24} title='Fullscreen' />
-              </div>
+              </button>
               <Track items={mockItems} />
             </Column>
             <Button onClick={() => {}}>Upload</Button>

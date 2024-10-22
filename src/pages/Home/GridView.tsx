@@ -10,11 +10,9 @@ const GridView: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     <Column className='gap-2 mt-6'>
       <SearchInput onSearch={handleSearch} />
       <Column style={{ alignItems: 'flex-end', gap: 8, width: '100%' }}>
-        <AiOutlineFullscreenExit
-          size={24}
-          title='Exit fullscreen'
-          onClick={onClose}
-        />
+        <button onClick={onClose} title='Exit fullscreen'>
+          <AiOutlineFullscreenExit size={24} />
+        </button>
         <div className='w-full bg-white bg-opacity-20 p-8'>
           <div className='flex-grow flex items-center w-full'>
             {mockItems.length === 0 ? (

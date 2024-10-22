@@ -20,7 +20,7 @@ export const mockItems = [
   { id: 4, name: 'example4', owner: 'sallysmith', link: 'https://google.com' },
   {
     id: 5,
-    name: 'really-really-extra-long-super-duper-long-repo-name',
+    name: 'really-really-extra-extra-long-super-duper-long-repo-name',
     owner: 'jimmyanderson',
     link: 'https://google.com',
   },

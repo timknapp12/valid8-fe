@@ -1,3 +1,12 @@
+import { User } from '@supabase/supabase-js';
+
+export type AuthContextType = {
+  user: User | null;
+  loading: boolean;
+  handleSignIn: () => Promise<void>;
+  handleSignOut: () => Promise<void>;
+};
+
 export interface AppContextType {
   searchTerm: string;
   handleSearch: (query: string) => void;
@@ -8,6 +17,7 @@ export interface ButtonProps {
   children: any;
   className?: string;
   onClick: () => void;
+  loading?: boolean;
 }
 
 export interface ColumnProps {

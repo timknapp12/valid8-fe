@@ -3,7 +3,7 @@ import { TileProps } from '../types';
 
 export const Tile: React.FC<TileProps> = ({ name, owner, link }) => {
   return (
-    <div className='bg-white rounded-lg p-4 min-w-64 max-w-64 h-48 flex flex-col justify-between shadow-custom-dark hover:shadow-custom-dark-hover transition-shadow duration-300 mx-3'>
+    <div className='bg-white rounded-lg p-4 min-w-64 max-w-64 h-48 flex flex-col justify-between shadow-custom-dark hover:shadow-custom-dark-hover transition-shadow duration-300'>
       <div className='flex-grow overflow-hidden'>
         <h3 className='text-lg font-semibold mb-2 text-gray-800 break-words line-clamp-3'>
           {name}

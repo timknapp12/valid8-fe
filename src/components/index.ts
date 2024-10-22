@@ -5,3 +5,4 @@ export * from './Column';
 export * from './SearchInput';
 export * from './Track';
 export * from './Tile';
+export * from './Grid';

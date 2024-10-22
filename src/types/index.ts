@@ -37,3 +37,10 @@ export interface TileProps {
 export interface TrackProps {
   items: TileProps[];
 }
+
+export interface GridProps {
+  gapSize?: string;
+  min?: string;
+  children: React.ReactNode;
+  className?: string;
+}

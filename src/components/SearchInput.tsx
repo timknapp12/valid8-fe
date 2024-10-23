@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Row } from './Row';
 import { FaSearch } from 'react-icons/fa';
 import { SearchInputProps } from '../types';
-
+import { useAppContext } from '../contexts/AppContext';
 export const SearchInput: React.FC<SearchInputProps> = ({
   onSearch,
   placeholder = 'Search...',
 }) => {
+  const { isLoadingRepos } = useAppContext();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,13 +16,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <Row className='w-[80%] p-0 bg-gradient-to-r from-white to-transparent rounded-md h-10 border border-lightGray focus-within:border-hotPink'>
+    <Row className='w-[80%] p-0 bg-gradient-to-r from-white via-white/75 to-transparent rounded-md h-10 border border-lightGray focus-within:border-hotPink'>
       <input
         type='text'
         value={searchTerm}
         onChange={handleChange}
         placeholder={placeholder}
         className='w-full px-4 py-2 pr-10 text-sm bg-transparent focus:outline-none focus:ring-0 text-gradient h-full'
+        disabled={isLoadingRepos}
       />
       <FaSearch size={20} />
     </Row>

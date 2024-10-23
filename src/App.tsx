@@ -1,12 +1,15 @@
 import './App.css';
+import AuthProvider from './contexts/AuthContext';
 import AppProvider from './contexts/AppContext';
 import Home from './pages/Home';
 
 function App() {
   return (
-    <AppProvider>
-      <Home />
-    </AppProvider>
+    <AuthProvider>
+      <AppProvider>
+        <Home />
+      </AppProvider>
+    </AuthProvider>
   );
 }
 

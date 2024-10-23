@@ -9,9 +9,14 @@ export const Header = () => {
   const buttonText = user ? 'Sign out' : 'Sign in';
 
   return (
-    <header className='w-full bg-gradient-to-r from-white to-transparent'>
+    <header className='w-full bg-gradient-to-r from-white via-white/75 to-transparent'>
       <Row>
         <p className='text-2xl font-bold text-black'>Valid8</p>
+        {user && (
+          <p className='hidden sm:block text-sm text-black'>{`Welcome ${
+            user?.user_metadata?.name ?? ''
+          }!`}</p>
+        )}
         <Button onClick={onClick} loading={loading}>
           {buttonText}
         </Button>

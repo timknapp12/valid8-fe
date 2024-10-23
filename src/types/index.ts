@@ -83,7 +83,6 @@ export type RepoModalProps = {
   onSubmit: (repos: Repository[]) => void;
   verifying: boolean;
   verificationErrors?: VerificationError[];
-  // onSubmitSuccess: (verifiedRepos: VerifiedRepo[]) => void;
 };
 
 export type VerifiedRepo = {

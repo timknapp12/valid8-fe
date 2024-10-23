@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { TileProps } from '../types';
 import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai';
-import mockValid8 from '../mocks/mockValid8.json';
 
 interface TileModalProps extends TileProps {
   onClose: () => void;
@@ -35,7 +34,7 @@ export const TileModal: React.FC<TileModalProps> = ({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(JSON.stringify(mockValid8, null, 2));
+    navigator.clipboard.writeText(JSON.stringify(valid8_content, null, 2));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

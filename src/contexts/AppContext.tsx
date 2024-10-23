@@ -21,19 +21,15 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const getRepos = async () => {
       try {
         const [data, error] = await fetchRepos();
-        console.log('Received data in AppProvider:', data);
 
         if (error || !data) {
           console.error('Error in AppProvider:', error);
-          setRepos([]);
         } else {
           const reposArray = Array.isArray(data) ? data : [];
-          console.log('Setting repos with:', reposArray);
           setRepos(reposArray);
         }
       } catch (error) {
         console.error('Unexpected error in AppProvider:', error);
-        setRepos([]);
       } finally {
         setIsLoadingRepos(false);
       }
@@ -41,10 +37,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     getRepos();
   }, []);
-
-  useEffect(() => {
-    console.log('Current repos state:', repos);
-  }, [repos]);
 
   const handleSearch = (query: string) => {
     setSearchTerm(query);
@@ -54,11 +46,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     searchTerm === ''
       ? repos
       : repos.filter((repo) => {
-          if (!repo || !repo.repo_name || !repo.username) {
-            console.log('Invalid repo object:', repo);
-            return false;
-          }
-
           const searchLower = searchTerm.toLowerCase();
           const repo_nameLower = repo.repo_name.toLowerCase();
           const repo_nameSpaces = repo.repo_name

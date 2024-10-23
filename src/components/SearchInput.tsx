@@ -15,7 +15,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <Row className='w-[80%] p-0 bg-gradient-to-r from-white to-transparent rounded-md h-10 border border-lightGray focus-within:border-hotPink'>
+    <Row className='w-[80%] p-0 bg-gradient-to-r from-white via-white/75 to-transparent rounded-md h-10 border border-lightGray focus-within:border-hotPink'>
       <input
         type='text'
         value={searchTerm}

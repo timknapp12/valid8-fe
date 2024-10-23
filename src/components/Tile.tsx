@@ -3,7 +3,13 @@ import { TileProps } from '../types';
 import { AiOutlineFullscreen } from 'react-icons/ai';
 import { TileModal } from './TileModal';
 
-export const Tile: React.FC<TileProps> = ({ id, name, owner, link }) => {
+export const Tile: React.FC<TileProps> = ({
+  full_name,
+  repo_name,
+  username,
+  repo_url,
+  valid8_content,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -22,35 +28,36 @@ export const Tile: React.FC<TileProps> = ({ id, name, owner, link }) => {
         <div className='flex-grow overflow-hidden'>
           <h3
             className='text-lg font-semibold mb-2 text-gray-800 break-words line-clamp-3'
-            title={name}
+            title={repo_name}
           >
-            {name}
+            {repo_name}
           </h3>
           <p
             className='text-sm text-gray-600 break-words line-clamp-2'
-            title={owner}
+            title={username}
           >
-            {owner}
+            {username}
           </p>
         </div>
         <div className='mt-2 w-full overflow-hidden'>
           <a
-            href={link}
+            href={repo_url}
             target='_blank'
             rel='noreferrer'
             className='text-blue hover:underline block truncate'
-            title={link}
+            title={repo_url}
           >
-            {link}
+            {repo_url}
           </a>
         </div>
       </div>
       {isModalOpen && (
         <TileModal
-          id={id}
-          name={name}
-          owner={owner}
-          link={link}
+          full_name={full_name}
+          repo_name={repo_name}
+          username={username}
+          repo_url={repo_url}
+          valid8_content={valid8_content}
           onClose={() => setIsModalOpen(false)}
         />
       )}

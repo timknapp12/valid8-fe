@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
-  Button,
   Column,
   Header,
+  AddRepo,
   SearchInput,
   StyleTag,
   Track,
@@ -10,9 +10,9 @@ import {
 import { useAppContext } from '../../contexts/AppContext';
 import GridView from './GridView';
 import { AiOutlineFullscreen } from 'react-icons/ai';
-
+// TODO mess with dark theme on tiles and modals
 const Home: React.FC = () => {
-  const { handleSearch, mockItems } = useAppContext();
+  const { handleSearch } = useAppContext();
   const [showGridView, setShowGridView] = useState(false);
 
   return (
@@ -43,9 +43,9 @@ const Home: React.FC = () => {
               <button className='p-2' onClick={() => setShowGridView(true)}>
                 <AiOutlineFullscreen size={24} title='Fullscreen' />
               </button>
-              <Track items={mockItems} />
+              <Track />
             </Column>
-            <Button onClick={() => {}}>Upload</Button>
+            <AddRepo />
           </>
         </Column>
       )}

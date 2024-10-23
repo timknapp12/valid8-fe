@@ -1,31 +1,93 @@
-import React, { createContext, useContext, ReactNode, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from 'react';
 import { AppContextType } from '../types';
-import { mockItems } from './mockItems';
+import { fetchRepos } from '../utils/fetchRepos';
+import { TileProps } from '../types';
 
 const AppContext = createContext<AppContextType>({} as AppContextType);
 export const useAppContext = () => useContext(AppContext);
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [repos, setRepos] = useState<TileProps[]>([]);
+  const [isLoadingRepos, setIsLoadingRepos] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredItems, setFilteredItems] = useState(mockItems);
+
+  useEffect(() => {
+    const getRepos = async () => {
+      try {
+        const [data, error] = await fetchRepos();
+        console.log('Received data in AppProvider:', data);
+
+        if (error || !data) {
+          console.error('Error in AppProvider:', error);
+          setRepos([]);
+        } else {
+          const reposArray = Array.isArray(data) ? data : [];
+          console.log('Setting repos with:', reposArray);
+          setRepos(reposArray);
+        }
+      } catch (error) {
+        console.error('Unexpected error in AppProvider:', error);
+        setRepos([]);
+      } finally {
+        setIsLoadingRepos(false);
+      }
+    };
+
+    getRepos();
+  }, []);
+
+  useEffect(() => {
+    console.log('Current repos state:', repos);
+  }, [repos]);
 
   const handleSearch = (query: string) => {
     setSearchTerm(query);
-    const filtered = mockItems.filter(
-      (item) =>
-        item.name.toLowerCase().includes(query.toLowerCase()) ||
-        item.name
-          .toLowerCase()
-          .replace(/-/g, ' ')
-          .includes(query.toLowerCase()) ||
-        item.owner.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredItems(filtered);
   };
+
+  const filteredRepos =
+    searchTerm === ''
+      ? repos
+      : repos.filter((repo) => {
+          if (!repo || !repo.repo_name || !repo.username) {
+            console.log('Invalid repo object:', repo);
+            return false;
+          }
+
+          const searchLower = searchTerm.toLowerCase();
+          const repo_nameLower = repo.repo_name.toLowerCase();
+          const repo_nameSpaces = repo.repo_name
+            .toLowerCase()
+            .replace(/-/g, ' ');
+          const usernameLower = repo.username.toLowerCase();
+
+          return (
+            repo_nameLower.includes(searchLower) ||
+            repo_nameSpaces.includes(searchLower) ||
+            usernameLower.includes(searchLower)
+          );
+        });
+
+  // Sort the filtered repos by num_of_clicks in descending order
+  const sortedRepos = [...filteredRepos].sort((a, b) => {
+    const clicksA = a.num_of_clicks || 0;
+    const clicksB = b.num_of_clicks || 0;
+    return clicksB - clicksA;
+  });
 
   return (
     <AppContext.Provider
-      value={{ searchTerm, handleSearch, mockItems: filteredItems }}
+      value={{
+        searchTerm,
+        handleSearch,
+        filteredRepos: sortedRepos,
+        isLoadingRepos,
+      }}
     >
       {children}
     </AppContext.Provider>

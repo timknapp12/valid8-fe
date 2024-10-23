@@ -11,6 +11,7 @@ module.exports = {
         blue: '#007bff',
         hotPink: '#ff69b4',
         darkHotPink: '#ff3da8',
+        red: '#ff0000',
       },
       boxShadow: {
         'custom-dark':

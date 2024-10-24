@@ -126,7 +126,7 @@ export const RepoModal = ({
                 <ul className='mt-2 list-disc list-inside'>
                   {verificationErrors.map((error, index) => (
                     <li key={index}>
-                      {error.repo.name}: No valid8.json file found
+                      {error.repo.name}: {error.error}
                     </li>
                   ))}
                 </ul>

@@ -3,6 +3,7 @@ import { Repository, VerificationError, VerifiedRepo } from '../types';
 import { Button } from './Button';
 import { RepoModal } from './RepoModal';
 import { supabase } from '../utils/supabaseConfig';
+import { addToSupabase } from '../utils/addToSupabase';
 import { FaPlus } from 'react-icons/fa';
 import { useAppContext } from '../contexts/AppContext';
 import toast from 'react-hot-toast';
@@ -14,34 +15,6 @@ export const AddRepo = () => {
   const [verificationErrors, setVerificationErrors] = useState<
     VerificationError[]
   >([]);
-
-  const addToSupabase = async (verifiedRepos: VerifiedRepo[]) => {
-    try {
-      const formattedRepos = verifiedRepos.map((repo) => ({
-        full_name: repo.repofull_name,
-        repo_name: repo.repo_name,
-        username: repo.username,
-        repo_url: repo.repo_url,
-        valid8_content: repo.valid8_content,
-        num_of_clicks: 0,
-      }));
-
-      const { error } = await supabase
-        .from('repositories')
-        .upsert(formattedRepos, {
-          onConflict: 'full_name',
-        });
-
-      if (error) {
-        throw error;
-      }
-
-      await refetchRepos();
-    } catch (error) {
-      console.error('Error adding repositories to Supabase:', error);
-      throw error;
-    }
-  };
 
   const verifyRepositories = async (selectedRepos: Repository[]) => {
     setVerifying(true);
@@ -76,8 +49,10 @@ export const AddRepo = () => {
             errors.push({
               repo,
               error: `GitHub API error: ${response.status} - ${
-                response.statusText
-              }. ${errorData.message || 'No valid8.json file found'}`,
+                response.status === 404
+                  ? 'No valid8.json file found'
+                  : errorData.message
+              }`,
             });
             continue;
           }
@@ -117,7 +92,7 @@ export const AddRepo = () => {
 
       if (errors.length === 0 && verified.length > 0) {
         try {
-          await addToSupabase(verified);
+          await addToSupabase(verified, refetchRepos);
           await refetchRepos();
           setShowModal(false);
 
@@ -126,7 +101,7 @@ export const AddRepo = () => {
               duration: 3000,
               position: 'bottom-right',
               style: {
-                background: '#10B981',
+                background: '#0D9488',
                 color: '#fff',
               },
             });

@@ -57,13 +57,16 @@ export const Track = () => {
                 username,
                 repo_url,
                 valid8_content,
+                num_of_clicks,
               }) => (
                 <Tile
                   key={full_name}
+                  full_name={full_name}
                   repo_name={repo_name}
                   username={username}
                   repo_url={repo_url}
                   valid8_content={valid8_content}
+                  num_of_clicks={num_of_clicks}
                 />
               )
             )}

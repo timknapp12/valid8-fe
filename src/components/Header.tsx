@@ -1,6 +1,7 @@
 import { Row } from './Row';
 import { Button } from './Button';
 import { useAuthContext } from '../contexts/AuthContext';
+import logoImage from '../assets/valid8_icon.png';
 
 export const Header = () => {
   const { handleSignIn, handleSignOut, user, loading } = useAuthContext();
@@ -11,7 +12,7 @@ export const Header = () => {
   return (
     <header className='w-full bg-gradient-to-r from-white via-white/75 to-transparent'>
       <Row>
-        <p className='text-2xl font-bold text-black'>Valid8</p>
+        <img src={logoImage} alt='Valid8 Logo' className='h-16' />
         {user && (
           <p className='hidden sm:block text-sm text-black'>{`Welcome ${
             user?.user_metadata?.name ?? ''

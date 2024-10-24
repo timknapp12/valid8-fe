@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   useState,
   useEffect,
+  useCallback,
 } from 'react';
 import { AppContextType } from '../types';
 import { fetchRepos } from '../utils/fetchRepos';
@@ -17,26 +18,29 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoadingRepos, setIsLoadingRepos] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    const getRepos = async () => {
-      try {
-        const [data, error] = await fetchRepos();
-
-        if (error || !data) {
-          console.error('Error in AppProvider:', error);
-        } else {
-          const reposArray = Array.isArray(data) ? data : [];
-          setRepos(reposArray);
-        }
-      } catch (error) {
-        console.error('Unexpected error in AppProvider:', error);
-      } finally {
-        setIsLoadingRepos(false);
+  const refetchRepos = useCallback(async () => {
+    setIsLoadingRepos(true);
+    try {
+      const [data, error] = await fetchRepos();
+      if (error || !data) {
+        console.error('Error in AppProvider:', error);
+        setRepos([]);
+      } else {
+        const reposArray = Array.isArray(data) ? data : [];
+        setRepos(reposArray);
       }
-    };
-
-    getRepos();
+    } catch (error) {
+      console.error('Unexpected error in AppProvider:', error);
+      setRepos([]);
+    } finally {
+      setIsLoadingRepos(false);
+    }
   }, []);
+
+  // Initial fetch
+  useEffect(() => {
+    refetchRepos();
+  }, [refetchRepos]);
 
   const handleSearch = (query: string) => {
     setSearchTerm(query);
@@ -74,6 +78,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         handleSearch,
         filteredRepos: sortedRepos,
         isLoadingRepos,
+        refetchRepos,
       }}
     >
       {children}

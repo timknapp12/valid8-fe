@@ -19,3 +19,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 //     valid8_content JSONB NOT NULL,
 //     num_of_clicks INTEGER DEFAULT 0
 // );
+
+// ALTER TABLE repositories
+// ADD CONSTRAINT repositories_full_name_key UNIQUE (full_name);

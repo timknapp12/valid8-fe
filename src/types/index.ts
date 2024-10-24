@@ -12,6 +12,7 @@ export type AppContextType = {
   handleSearch: (query: string) => void;
   filteredRepos: TileProps[];
   isLoadingRepos: boolean;
+  refetchRepos: () => Promise<void>;
 };
 
 export type ButtonProps = {

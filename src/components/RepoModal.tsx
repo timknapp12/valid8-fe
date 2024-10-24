@@ -5,7 +5,7 @@ import { Repository, RepoModalProps } from '../types';
 import { FaSpinner } from 'react-icons/fa';
 import { Button } from './Button';
 import { useAuthContext } from '../contexts/AuthContext';
-
+import { useAppContext } from '../contexts/AppContext';
 export const RepoModal = ({
   onClose,
   onSubmit,
@@ -13,6 +13,7 @@ export const RepoModal = ({
   verificationErrors = [],
 }: RepoModalProps) => {
   const { user } = useAuthContext();
+  const { isLoadingRepos } = useAppContext();
   const modalRef = useRef<HTMLDivElement>(null);
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [selectedRepos, setSelectedRepos] = useState<Repository[]>([]);
@@ -139,6 +140,7 @@ export const RepoModal = ({
                 className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-hotPink focus:border-hotPink text-darkGray'
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                disabled={error !== null || isLoadingRepos}
               />
             </div>
 

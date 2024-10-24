@@ -21,7 +21,7 @@ export const Tile: React.FC<TileProps> = ({
       .from('repositories')
       .update({ num_of_clicks: (num_of_clicks || 0) + 1 })
       .eq('full_name', full_name)
-      .then(({ data, error }) => {
+      .then(({ error }) => {
         if (error) {
           console.error('Error incrementing clicks:', error);
         } else {
